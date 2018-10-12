@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context=".MainActivity">
+    android:background="#868383"
+    android:padding="20dp"
+    app:item_margin="5dp"
+    app:line_margin="10dp"
+    tools:context=".FlowLayoutDemoActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -52,7 +56,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#2e30a3"
-        android:text="jjjdd"
-        />
+        android:text="jjjdd" />
 
 </com.qingfeng.flowlayout_ibrary.FlowLayout>

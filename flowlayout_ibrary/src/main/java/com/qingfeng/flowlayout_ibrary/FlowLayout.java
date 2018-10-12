@@ -1,6 +1,7 @@
 package com.qingfeng.flowlayout_ibrary;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,8 @@ public class FlowLayout extends ViewGroup {
     private ArrayList<View> mLineViews = new ArrayList<>();
     private ArrayList<Integer> mLineWidths = new ArrayList<>();
     private ArrayList<Integer> mLineHeights = new ArrayList<>();
-
+    private int lineMargin;
+    private int itemMagin;
 
     public FlowLayout(Context context) {
         this(context, null);
@@ -26,7 +28,14 @@ public class FlowLayout extends ViewGroup {
 
     public FlowLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initAttrs(context, attrs, defStyleAttr);
+    }
 
+    private void initAttrs(Context context, AttributeSet attrs, int defStyleAttr) {
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.FlowLayout, defStyleAttr, 0);
+        lineMargin = (int) ta.getDimension(R.styleable.FlowLayout_line_margin, 0);
+        itemMagin = (int) ta.getDimension(R.styleable.FlowLayout_item_margin, 0);
+        ta.recycle();
     }
 
     @Override
@@ -56,14 +65,16 @@ public class FlowLayout extends ViewGroup {
             MarginLayoutParams layoutParams = (MarginLayoutParams) child.getLayoutParams();
 
             int childWidth = child.getMeasuredWidth() + layoutParams.leftMargin + layoutParams.rightMargin;
-            int childHeight = child.getMeasuredHeight() + layoutParams.topMargin + layoutParams.bottomMargin;
+            int childHeight = child.getMeasuredHeight() + layoutParams.topMargin + layoutParams.bottomMargin + lineMargin;
 
             if (lineWidth + childWidth <= widthSize - getPaddingLeft() - getPaddingRight()) {
                 mLineViews.add(child);
-                lineWidth += childWidth;
+                lineWidth += childWidth + itemMagin;
                 lineHeight = Math.max(lineHeight, childHeight);
             } else {
                 //新的一行
+                lineWidth -= itemMagin;//去除最后一列的item margin
+
                 mAllViews.add(mLineViews);
                 mLineWidths.add(lineWidth);
                 mLineHeights.add(lineHeight);
@@ -80,6 +91,9 @@ public class FlowLayout extends ViewGroup {
 
             //当View为最后一个时，保存最后一行
             if (i == childCount - 1) {
+                lineWidth -= itemMagin;//去除最后一列的item margin
+                lineHeight -= lineMargin;//去除最后行 line margin
+
                 mAllViews.add(mLineViews);
                 mLineWidths.add(lineWidth);
                 mLineHeights.add(lineHeight);
@@ -114,7 +128,7 @@ public class FlowLayout extends ViewGroup {
 
                 view.layout(cl, ct, cr, cb);
 
-                curLeft += view.getMeasuredWidth() + layoutParams.leftMargin + layoutParams.rightMargin;
+                curLeft += view.getMeasuredWidth() + layoutParams.leftMargin + layoutParams.rightMargin + itemMagin;
             }
             curLeft = getPaddingLeft();
             curTop += lineHeight;

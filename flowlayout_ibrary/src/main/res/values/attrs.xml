@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FlowLayout">
+        <attr name="line_margin" format="dimension" />
+
+        <attr name="item_margin" format="dimension" />
+    </declare-styleable>
+</resources>

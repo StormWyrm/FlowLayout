@@ -6,6 +6,7 @@
     android:padding="20dp"
     app:line_margin="10dp"
     app:item_margin="10dp"
+    app:max_select="-1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".TagFlowLayoutActivity">

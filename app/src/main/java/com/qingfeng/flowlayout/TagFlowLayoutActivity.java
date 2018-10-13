@@ -12,6 +12,7 @@ import com.qingfeng.flowlayout_ibrary.TagFlowLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class TagFlowLayoutActivity extends AppCompatActivity {
     private TagFlowLayout tfl;
@@ -53,11 +54,21 @@ public class TagFlowLayoutActivity extends AppCompatActivity {
         };
         tagAdapter.setOnTagClickListener(new TagAdapter.OnTagClickListener() {
             @Override
-            public void onTagClick(TagFlowLayout tagFlowLayout, View view, int position) {
+            public boolean onTagClick(TagFlowLayout tagFlowLayout, View view, int position) {
                 Toast.makeText(TagFlowLayoutActivity.this, mDatas.get(position), Toast.LENGTH_SHORT).show();
+                return true;
             }
         });
-
+        tagAdapter.setOnTagSelectListener(new TagAdapter.OnTagSelectListener() {
+            @Override
+            public void onTagSelect(Set<Integer> selectViews) {
+                String indexs = "";
+                for (Integer index : selectViews){
+                    indexs += index+",";
+                }
+                Toast.makeText(TagFlowLayoutActivity.this, indexs, Toast.LENGTH_SHORT).show();
+            }
+        });
         tfl.setAdapter(tagAdapter);
     }
 }

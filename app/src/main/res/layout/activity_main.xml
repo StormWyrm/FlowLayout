@@ -6,9 +6,9 @@
     android:layout_height="wrap_content"
     android:background="#868383"
     android:padding="20dp"
-    app:item_margin="5dp"
+    app:item_margin="10dp"
     app:line_margin="10dp"
-    tools:context=".FlowLayoutDemoActivity">
+    tools:context=".FlowLayoutActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#13bf3b"
-        android:text="Hello!Worldddddddddd" />
+        android:text="Hello!Worlddddd!!!!!!!" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#b5ca65"
-        android:text="Hello liqingfenghisdhihddshishishshhhhhhhddddddddd" />
+        android:text="Hello liqingfenghisdhihddshisddddhishshhhhhhhddddddddd" />
 
     <TextView
         android:layout_width="wrap_content"

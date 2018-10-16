@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.qingfeng.flowlayout_ibrary.TagFlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tfl"
-    android:padding="20dp"
-    app:line_margin="10dp"
-    app:item_margin="10dp"
-    app:max_select="3"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="20dp"
+    app:item_margin="10dp"
+    app:line_margin="10dp"
+    app:max_select="3"
     tools:context=".TagFlowLayoutActivity">
 
 </com.qingfeng.flowlayout_ibrary.TagFlowLayout>

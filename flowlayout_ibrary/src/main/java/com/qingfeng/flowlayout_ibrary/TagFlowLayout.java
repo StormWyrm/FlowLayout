@@ -7,6 +7,7 @@ import android.view.View;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 public class TagFlowLayout extends FlowLayout
         implements TagAdapter.OnDataChangeListener {
@@ -36,6 +37,13 @@ public class TagFlowLayout extends FlowLayout
         changeAdapter();
     }
 
+    public void setMaxSelect(int maxSelect) {
+        if (maxSelect < 0)
+            maxSelect = -1;
+
+        this.maxSelect = maxSelect;
+    }
+
     public void setAdapter(TagAdapter tagAdapter) {
         mTagAdapter = tagAdapter;
         tagAdapter.setOnDataChangeListener(this);
@@ -43,16 +51,21 @@ public class TagFlowLayout extends FlowLayout
         changeAdapter();
     }
 
+    public Set<Integer> getSelectList() {
+        return selectViews;
+    }
+
     private void changeAdapter() {
         removeAllViews();
         final TagAdapter tagAdapter = mTagAdapter;
+        HashSet preCheckedList = fixPreCheckedList(tagAdapter.getPreCheckedList());
         TagView tagViewContainer = null;
 
         int count = tagAdapter.getCount();
         for (int i = 0; i < count; i++) {
             final View tagView = tagAdapter.getView(this, i, tagAdapter.getItem(i));
-            tagView.setDuplicateParentStateEnabled(true);//支持将父View的状态传递给子View
-            tagView.setClickable(false);
+            tagView.setDuplicateParentStateEnabled(true);//将父View的状态传递给子View
+            tagView.setClickable(false);//让父控件来响应触摸事件
 
             tagViewContainer = new TagView(getContext());
 
@@ -69,6 +82,12 @@ public class TagFlowLayout extends FlowLayout
 
             final int position = i;
             final TagView finalTagViewContainer = tagViewContainer;
+
+            if (preCheckedList != null && preCheckedList.contains(i)) {
+                setChildChecked(finalTagViewContainer, position);
+                selectViews.add(position);
+            }
+
             tagViewContainer.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -87,6 +106,26 @@ public class TagFlowLayout extends FlowLayout
                 }
             });
         }
+    }
+
+    private HashSet fixPreCheckedList(HashSet<Integer> preCheckedList) {
+        HashSet<Integer> hashSet = new HashSet<>();
+        if (preCheckedList == null || preCheckedList.size() == 0 || maxSelect == 0)
+            return hashSet;
+        int tagCount = mTagAdapter.getCount();
+        int selectableCount = maxSelect < 0 ? tagCount : maxSelect;
+        Iterator<Integer> iterator = preCheckedList.iterator();
+
+        for (int i = 0; i < selectableCount; i++) {
+            if (!iterator.hasNext()) {
+                break;
+            }
+            Integer index = iterator.next();
+            if (index < tagCount) {
+                hashSet.add(index);
+            }
+        }
+        return hashSet;
     }
 
     private void doSelect(TagView tagView, int position) {

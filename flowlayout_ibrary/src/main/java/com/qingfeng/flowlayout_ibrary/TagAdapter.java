@@ -4,11 +4,14 @@ import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public abstract class TagAdapter<T> {
     private List<T> mDatas;
+    private HashSet<Integer> mCheckedPosList = new HashSet<>();
+
     private OnDataChangeListener onDataChangeListener;
     private OnTagClickListener onTagClickListener;
     private OnTagSelectListener onTagSelectListener;
@@ -45,30 +48,59 @@ public abstract class TagAdapter<T> {
         return onTagSelectListener;
     }
 
-    public void notifyDataChange() {
-        if (onDataChangeListener != null)
-            onDataChangeListener.onDataChanged();
+
+    public void setDatas(List<T> datas) {
+        this.mDatas = datas;
+        notifyDataChanged();
+    }
+
+    public void setSelectedList(int... poses) {
+        Set<Integer> set = new HashSet<>();
+        for (int pos : poses) {
+            set.add(pos);
+        }
+        setSelectedList(set);
+    }
+
+
+    public void setSelectedList(Set<Integer> set) {
+        mCheckedPosList.clear();
+        if (set != null) {
+            mCheckedPosList.addAll(set);
+        }
+        notifyDataChanged();
+    }
+
+    public HashSet<Integer> getPreCheckedList() {
+        return mCheckedPosList;
     }
 
     public T getItem(int position) {
         return mDatas == null ? null : mDatas.get(position);
     }
 
+    public void notifyDataChanged() {
+        if (onDataChangeListener != null)
+            onDataChangeListener.onDataChanged();
+    }
+
     /**
      * 当View被选择时候调用，可以在这里设置View被选中的状态
+     *
      * @param position
      * @param view
      */
-    public void onSelected(int position, View view){
+    public void onSelected(int position, View view) {
 
     }
 
     /**
      * 当View不被选择时候调用，可以在这里设置view的默认状态
+     *
      * @param position 位置
-     * @param view 被选择的View
+     * @param view     被选择的View
      */
-    public void unSelected(int position, View view){
+    public void unSelected(int position, View view) {
 
     }
 
@@ -79,7 +111,7 @@ public abstract class TagAdapter<T> {
     }
 
     public interface OnTagClickListener {
-        boolean onTagClick(TagFlowLayout tagFlowLayout,View view,int position);
+        boolean onTagClick(TagFlowLayout tagFlowLayout, View view, int position);
     }
 
     public interface OnTagSelectListener {

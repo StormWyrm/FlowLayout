@@ -11,6 +11,7 @@ import com.qingfeng.flowlayout_ibrary.TagAdapter;
 import com.qingfeng.flowlayout_ibrary.TagFlowLayout;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,6 +19,7 @@ public class TagFlowLayoutActivity extends AppCompatActivity {
     private TagFlowLayout tfl;
     private TagAdapter tagAdapter;
     private List<String> mDatas;
+    private HashSet<Integer> selectList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,12 @@ public class TagFlowLayoutActivity extends AppCompatActivity {
         mDatas.add(new String("穿越火线：枪战王者"));
         mDatas.add(new String("永恒纪元"));
         mDatas.add(new String("王者荣耀"));
+
+        selectList = new HashSet<>();
+        selectList.add(0);
+        selectList.add(1);
+        selectList.add(10);
+        selectList.add(6);
     }
 
     private void initAdapter() {
@@ -52,6 +60,7 @@ public class TagFlowLayoutActivity extends AppCompatActivity {
                 return textView;
             }
         };
+        tagAdapter.setSelectedList(selectList);
         tagAdapter.setOnTagClickListener(new TagAdapter.OnTagClickListener() {
             @Override
             public boolean onTagClick(TagFlowLayout tagFlowLayout, View view, int position) {

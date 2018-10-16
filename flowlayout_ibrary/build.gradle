@@ -1,9 +1,8 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.StormWyrm'
 android {
     compileSdkVersion 27
-
-
 
     defaultConfig {
         minSdkVersion 14

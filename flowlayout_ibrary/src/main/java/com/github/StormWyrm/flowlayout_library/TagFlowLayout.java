@@ -90,24 +90,23 @@ public class TagFlowLayout extends FlowLayout
 
             final TagAdapter.OnTagClickListener onTagClickListener = tagAdapter.getOnTagClickListener();
             final TagAdapter.OnTagSelectListener onTagSelectListener = tagAdapter.getOnTagSelectListener();
-            if (onTagClickListener == null && onTagSelectListener == null)
-                return;
-            tagViewContainer.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    doSelect(finalTagViewContainer, position);
-
-
-                    if (onTagClickListener != null) {
-                        boolean b = onTagClickListener.onTagClick(TagFlowLayout.this, v, position);
-                        if (!b && onTagSelectListener != null) {
+            if (onTagClickListener != null || onTagSelectListener != null){
+                tagViewContainer.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        doSelect(finalTagViewContainer, position);
+                        if (onTagClickListener != null) {
+                            boolean b = onTagClickListener.onTagClick(TagFlowLayout.this, v, position);
+                            if (!b && onTagSelectListener != null) {
+                                onTagSelectListener.onTagSelect(new HashSet<Integer>(selectViews));
+                            }
+                        } else if (onTagSelectListener != null) {
                             onTagSelectListener.onTagSelect(new HashSet<Integer>(selectViews));
                         }
-                    } else if (onTagSelectListener != null) {
-                        onTagSelectListener.onTagSelect(new HashSet<Integer>(selectViews));
                     }
-                }
-            });
+                });
+            }
+
         }
     }
 

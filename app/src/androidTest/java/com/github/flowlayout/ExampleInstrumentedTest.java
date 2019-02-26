@@ -1,4 +1,4 @@
-package com.qingfeng.flowlayout_ibrary;
+package com.github.flowlayout;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.qingfeng.flowlayout_ibrary.test", appContext.getPackageName());
+        assertEquals("com.qingfeng.flowlayout", appContext.getPackageName());
     }
 }

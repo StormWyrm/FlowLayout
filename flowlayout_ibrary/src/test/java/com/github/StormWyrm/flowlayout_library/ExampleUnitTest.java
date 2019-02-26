@@ -1,4 +1,4 @@
-package com.qingfeng.flowlayout;
+package com.github.StormWyrm.flowlayout_library;
 
 import org.junit.Test;
 

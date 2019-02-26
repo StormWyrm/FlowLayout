@@ -1,4 +1,4 @@
-package com.qingfeng.flowlayout_ibrary;
+package com.github.flowlayout;
 
 import org.junit.Test;
 

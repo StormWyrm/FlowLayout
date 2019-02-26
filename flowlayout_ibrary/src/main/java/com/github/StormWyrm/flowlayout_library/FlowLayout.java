@@ -1,4 +1,4 @@
-package com.qingfeng.flowlayout_ibrary;
+package com.github.StormWyrm.flowlayout_library;
 
 import android.content.Context;
 import android.content.res.TypedArray;

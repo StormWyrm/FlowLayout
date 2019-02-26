@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.qingfeng.flowlayout_ibrary.TagFlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.github.StormWyrm.flowlayout_library.TagFlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tfl"
@@ -11,4 +11,4 @@
     app:max_select="3"
     tools:context=".TagFlowLayoutActivity">
 
-</com.qingfeng.flowlayout_ibrary.TagFlowLayout>
+</com.github.StormWyrm.flowlayout_library.TagFlowLayout>

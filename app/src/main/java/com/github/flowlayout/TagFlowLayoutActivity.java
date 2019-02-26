@@ -1,4 +1,4 @@
-package com.qingfeng.flowlayout;
+package com.github.flowlayout;
 
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.qingfeng.flowlayout_ibrary.TagAdapter;
-import com.qingfeng.flowlayout_ibrary.TagFlowLayout;
+import com.github.StormWyrm.flowlayout_library.TagAdapter;
+import com.github.StormWyrm.flowlayout_library.TagFlowLayout;
 
 import java.util.ArrayList;
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package com.qingfeng.flowlayout_ibrary;
+package com.github.StormWyrm.flowlayout_library;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -88,12 +88,15 @@ public class TagFlowLayout extends FlowLayout
                 selectViews.add(position);
             }
 
+            final TagAdapter.OnTagClickListener onTagClickListener = tagAdapter.getOnTagClickListener();
+            final TagAdapter.OnTagSelectListener onTagSelectListener = tagAdapter.getOnTagSelectListener();
+            if (onTagClickListener == null && onTagSelectListener == null)
+                return;
             tagViewContainer.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     doSelect(finalTagViewContainer, position);
-                    TagAdapter.OnTagClickListener onTagClickListener = tagAdapter.getOnTagClickListener();
-                    TagAdapter.OnTagSelectListener onTagSelectListener = tagAdapter.getOnTagSelectListener();
+
 
                     if (onTagClickListener != null) {
                         boolean b = onTagClickListener.onTagClick(TagFlowLayout.this, v, position);

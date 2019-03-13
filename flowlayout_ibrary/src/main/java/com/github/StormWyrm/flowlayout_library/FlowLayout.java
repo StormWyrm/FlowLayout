@@ -64,12 +64,12 @@ public class FlowLayout extends ViewGroup {
             measureChild(child, widthMeasureSpec, heightMeasureSpec);
             MarginLayoutParams layoutParams = (MarginLayoutParams) child.getLayoutParams();
 
-            int childWidth = child.getMeasuredWidth() + layoutParams.leftMargin + layoutParams.rightMargin;
+            int childWidth = child.getMeasuredWidth() + layoutParams.leftMargin + layoutParams.rightMargin + itemMagin;
             int childHeight = child.getMeasuredHeight() + layoutParams.topMargin + layoutParams.bottomMargin + lineMargin;
 
             if (lineWidth + childWidth <= widthSize - getPaddingLeft() - getPaddingRight()) {
                 mLineViews.add(child);
-                lineWidth += childWidth + itemMagin;
+                lineWidth += childWidth;
                 lineHeight = Math.max(lineHeight, childHeight);
             } else {
                 //新的一行

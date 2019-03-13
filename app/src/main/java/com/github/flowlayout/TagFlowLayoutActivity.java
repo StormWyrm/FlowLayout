@@ -37,7 +37,16 @@ public class TagFlowLayoutActivity extends AppCompatActivity {
         mDatas.add(new String("QQ飞车手游"));
         mDatas.add(new String("攻城掠地"));
         mDatas.add(new String("梦幻西游"));
+        mDatas.add(new String("攻城地"));
+        mDatas.add(new String("梦游"));
+        mDatas.add(new String("梦"));
         mDatas.add(new String("火影忍者"));
+        mDatas.add(new String("攻城地"));
+        mDatas.add(new String("梦游"));
+        mDatas.add(new String("火影忍者"));
+        mDatas.add(new String("攻城地"));
+        mDatas.add(new String("梦游"));
+        mDatas.add(new String("梦"));
         mDatas.add(new String("穿越火线：枪战王者"));
         mDatas.add(new String("永恒纪元"));
         mDatas.add(new String("王者荣耀"));

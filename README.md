@@ -23,7 +23,7 @@ Android流式布局,支持单选/多选操作,支持默认选择
     
     
     dependencies {
-        implementation 'com.github.StormWyrm:FlowLayout:1.0.0'
+        implementation 'com.github.StormWyrm:FlowLayout:1.0.3'
     }
 
 ##用法：
